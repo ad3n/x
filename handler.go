@@ -3,14 +3,15 @@ package x
 import (
 	"database/sql"
 	"fmt"
+	"log"
+	"strings"
+	"sync"
+
 	"github.com/gin-gonic/gin"
 	"github.com/vcraescu/go-paginator/v2"
 	"github.com/vcraescu/go-paginator/v2/adapter"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
-	"log"
-	"strings"
-	"sync"
 )
 
 type (

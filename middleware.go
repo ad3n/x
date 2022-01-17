@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+
 	"github.com/gin-gonic/gin"
 )
 
@@ -79,6 +80,8 @@ func ValidateHeader(mandatory RequestMandatory, logger KafkaLogger, coreEndpoint
 	return func(c *gin.Context) {
 		if !ValidatteHeader(c, mandatory, logger, coreEndpoint) {
 			CreateResponse(c, DomainInternal, ErrorFormatCode, gin.H{})
+
+			return
 		}
 
 		c.Next()

@@ -3,9 +3,9 @@ package x
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"io/ioutil"
-	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 func ValidatteHeader(c *gin.Context, mandatory RequestMandatory, logger KafkaLogger, coreEndpoint *string) bool {
@@ -52,17 +52,6 @@ func ValidatteHeader(c *gin.Context, mandatory RequestMandatory, logger KafkaLog
 	c.Set(BeTypeContextKey, mandatory.BeType)
 	if BeCore == mandatory.BeType {
 		return true
-	}
-
-	queries := c.Request.URL.Query()
-	for k := range queries {
-		if strings.Contains(strings.ToLower(k), "x-") {
-			return false
-		}
-
-		if strings.ToLower(k) == "content-type" {
-			return false
-		}
 	}
 
 	for _, k := range mandatory.Headers {
